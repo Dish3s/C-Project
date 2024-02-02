@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Pokemon.h"
 
 using namespace std;
 
@@ -35,5 +36,11 @@ int main()
     cout << "You can find my money at this address : " << bankAccount << "\n";
     cout << "You can find my bank at this address : " << &bankAccount << "\n";
 
+    Pokemon non("Pikachu", "1256635", "Lightning stuff");
+    cout << non.GetName() << endl;
+
 }
+
+
+
 

@@ -11,3 +11,5 @@ Pokemon::~Pokemon(){}
 std::string Pokemon::GetName() { return mName; }
 std::string Pokemon::GetPokedex() { return mPokedex; }
 std::vector<std::string> Pokemon::GetAbilities() { return mAbilities; }
+
+
