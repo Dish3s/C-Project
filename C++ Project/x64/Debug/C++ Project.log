@@ -1,2 +1,6 @@
 ﻿  C++ Project.cpp
-  C++ Project.vcxproj -> C:\Users\sacha.lignon\Documents\GitHub\C-Project\x64\Debug\C++ Project.exe
+C:\Users\sacha.lignon\Documents\GitHub\C-Project\C++ Project\C++ Project.cpp(18,20): error C2665: 'Pokemon::Pokemon': no overloaded function could convert all the argument types
+C:\Users\sacha.lignon\Documents\GitHub\C-Project\C++ Project\Pokemon.h(30,5): message : could be 'Pokemon::Pokemon(std::string,std::string,PokeType,std::string,std::string)'
+C:\Users\sacha.lignon\Documents\GitHub\C-Project\C++ Project\C++ Project.cpp(18,20): message : 'Pokemon::Pokemon(std::string,std::string,PokeType,std::string,std::string)': cannot convert argument 3 from 'const char [9]' to 'PokeType'
+C:\Users\sacha.lignon\Documents\GitHub\C-Project\C++ Project\C++ Project.cpp(18,58): message : There is no context in which this conversion is possible
+C:\Users\sacha.lignon\Documents\GitHub\C-Project\C++ Project\C++ Project.cpp(18,20): message : while trying to match the argument list '(const char [8], const char [23], const char [9], const char [8], const char [8])'

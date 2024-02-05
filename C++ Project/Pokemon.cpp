@@ -1,15 +1,17 @@
 #include "Pokemon.h"
-#include "iostream"
 
-Pokemon::Pokemon(std::string name, std::string pokedex, std::string abilities) {
-	name = name;
-	pokedex = pokedex;
-	abilities = abilities;
+Pokemon::Pokemon(std::string mName, std::string mDescription, PokeType mType, std::string mLevel, std::string mLife) {
+	mName = mName;
+	mDescription = mDescription;
+	mType = mType;
+	mLevel = mLevel;
+	mLife = mLife;
 }
-Pokemon::~Pokemon(){}
+
+Pokemon::~Pokemon() {}
 
 std::string Pokemon::GetName() { return mName; }
-std::string Pokemon::GetPokedex() { return mPokedex; }
-std::vector<std::string> Pokemon::GetAbilities() { return mAbilities; }
-
-
+std::string Pokemon::GetDescription() { return mDescription; }
+PokeType Pokemon::GetType() { return mType; }
+std::string Pokemon::GetLevel() { return mLevel; }
+std::string Pokemon::GetLife() { return mLife; }
