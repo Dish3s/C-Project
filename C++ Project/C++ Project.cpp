@@ -25,21 +25,33 @@ int main() {
 
     if (askYesNoQuestion("\nDo you get up?")) {
         std::cout << "\nAs you slowly sit up, the warmth of the sun embraces your skin, but it does little to ease the throbbing ache in your head.\n";
-        std::this_thread::sleep_for(std::chrono::seconds(2));
+        std::this_thread::sleep_for(std::chrono::seconds(4));
         std::cout << "With a grimace, you glance around, trying to make sense of your surroundings.\n";
         std::cout << "The field stretches out endlessly in all directions, with no sign of civilization in sight.\n";
         std::this_thread::sleep_for(std::chrono::seconds(4));
-        std::cout << "In the distance, a dense forest looms, its dark silhouette contrasting sharply against the clear blue sky.\n";
+        std::cout << "\nIn the distance, a dense forest looms, its dark silhouette contrasting sharply against the clear blue sky.\n";
         std::cout << "Anxiety creeps in, mingling with the discomfort of your pounding headache, as you contemplate what to do next.\n";
+
+        std::cout << "\nYou decide to explore the forest. As you enter, you hear rustling in the bushes.\n";
+        std::cout << "Suddenly, a wild Pokemon appears!\n";
+
     }
     else {
         std::cout << "\nYou decide to stay lying down a little longer, hoping the throbbing ache in your head will subside.\n";
-        std::this_thread::sleep_for(std::chrono::seconds(2));
-        if (askYesNoQuestion("Are you sure you don't want to get up?")) {
-            std::cout << "\nYou realize that you're lying down in the middle of nowhere waiting for what? Who?\n";
+        if (askYesNoQuestion("Will you get up?")) {
+            std::cout << "\nYou realize that you're lying down in the middle of nowhere, where unknown dangers may appear.\n";
+
+            std::cout << "You gather your strength and stand up. As you do, you notice something glinting in the grass nearby.\n";
+            std::cout << "You walk over and discover an old, worn Pokeball. You walk up and take it, it could be useful to you somehow...\n";
+
         }
         else {
             std::cout << "\nYou stubbornly remain lying down, ignoring any thoughts of getting up.\n";
+            std::this_thread::sleep_for(std::chrono::seconds(4));
+            std::cout << "After a while of resting your head, you feel a slight nudge on your thigh.\n";
+
+            std::cout << "Curious, you open your eyes to find a small Pikachu nudging you, its cheeks sparking with electricity.\n";
+            std::cout << "It seems to want your attention. What will you do?\n";
         }
     }
 
