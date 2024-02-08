@@ -1,36 +1,18 @@
-#ifndef POKEMON_H
-#define POKEMON_H
-
 #include <string>
-#include <vector>
-
-enum PokeType {
-    NORMAL,
-    FIRE,
-    WATER,
-    ELECTRIC,
-    GRASS,
-    ICE,
-    FIGHTING,
-    POISON,
-    GROUND,
-    FLYING,
-    PSYCHIC,
-    BUG,
-    ROCK,
-    GHOST,
-    DRAGON,
-    DARK,
-    STEEL,
-    FAIRY
-};
-
-
+#include "PokeType.h"
+#include "Abilities.h"
 
 class Pokemon {
+private:
+    std::string name;
+    std::string description;
+    PokeType type;
+    int level;
+    int life;
+    Ability abilities[4];
+
 public:
-    Pokemon(std::string name, std::string description, std::string type, std::string level, std::string life);
-    ~Pokemon();
+    Pokemon(std::string mName, std::string mDescription, std::string mType, std::string mLevel, std::string mLife, std::string mAbilities);
 
     std::string GetName();
     std::string GetDescription();
@@ -38,13 +20,5 @@ public:
     std::string GetLevel();
     std::string GetLife();
 
-private:
-    std::string mName;
-    std::string mDescription;
-    std::string mType;
-    std::string mLevel;
-    std::string mLife;
-    std::vector<std::string> mAbilities;
+    ~Pokemon();
 };
-
-#endif
