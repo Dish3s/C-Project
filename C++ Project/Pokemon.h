@@ -9,16 +9,22 @@ private:
     PokeType type;
     int level;
     int life;
-    Ability abilities[4];
+    Abilities abilities[4];
 
 public:
-    Pokemon(std::string mName, std::string mDescription, std::string mType, std::string mLevel, std::string mLife, std::string mAbilities);
+    Pokemon(std::string mName, std::string mDescription, PokeType mType, int mLevel, int mLife, Abilities mAbilities[4]);
 
     std::string GetName();
     std::string GetDescription();
-    std::string GetType();
-    std::string GetLevel();
-    std::string GetLife();
+    PokeType GetType();
+    int GetLevel();
+    int GetLife();
+
+    void SetType(PokeType mType);
+    void SetLevel(int mLevel);
+    void SetLife(int mLife);
+
+    Pokemon(std::string mName, std::string mDescription, PokeType mType, int mLevel, int mLife);
 
     ~Pokemon();
 };

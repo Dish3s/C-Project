@@ -1,9 +1,12 @@
 #include "Abilities.h"
 
-Ability::Ability(int damageAmount, PokeType attackType, int numUses) 
-    : damageAmount(damageAmount), attackType(attackType), numUses(numUses) {}
+Abilities::Abilities(int damageAmount, PokeType attackType, int numUses) {
+    damageAmount = damageAmount;
+    attackType = attackType;
+    numUses = numUses;
+}
 
-void Ability::use() {
+void Abilities::use() {
     if (numUses > 0) {
         // Perform attack
         numUses--;
@@ -12,7 +15,7 @@ void Ability::use() {
     }
 }
 
-void Ability::rest() {
+void Abilities::rest() {
     // Reset uses after resting
     numUses = 5;
 }

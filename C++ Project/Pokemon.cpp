@@ -1,18 +1,16 @@
 #include "Pokemon.h"
 
-Pokemon::Pokemon(std::string mName, std::string mDescription, std::string mType, std::string mLevel, std::string mLife, std::string mAbilities) {
-    mName = mName;
-    mDescription = mDescription;
-    mType = mType;
-    mLevel = mLevel;
-    mLife = mLife;
-    mAbilities = mAbilities
+Pokemon::Pokemon(std::string mName, std::string mDescription, PokeType mType, int mLevel, int mLife) {
+	mName = mName;
+	mDescription = mDescription;
+	mType = mType;
+	mLevel = mLevel;
+	mLife = mLife;
 }
-
 Pokemon::~Pokemon() {}
 
 std::string Pokemon::GetName() { return name; }
 std::string Pokemon::GetDescription() { return description; }
-std::string Pokemon::GetType() { return type; }
-std::string Pokemon::GetLevel() { return level; }
-std::string Pokemon::GetLife() { return mLife; }
+PokeType Pokemon::GetType() { return type; }
+int Pokemon::GetLevel() { return level; }
+int Pokemon::GetLife() { return life; }

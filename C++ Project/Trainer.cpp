@@ -1,7 +1,14 @@
 #include "Trainer.h"
 
-Trainer::Trainer(std::string firstName, std::string lastName, std::string catchphrase, int money, int lifePoints, int numPokeballs)
-    : firstName(firstName), lastName(lastName), catchphrase(catchphrase), money(money), lifePoints(lifePoints), numPokeballs(numPokeballs) {}
+Trainer::Trainer(std::string firstName, std::string lastName, std::string catchphrase, int money, int lifePoints, int numPokeballs){
+    firstName = firstName;
+    lastName = lastName;
+    catchphrase = catchphrase;
+    money = money;
+    lifePoints = lifePoints;
+    numPokeballs = numPokeballs;
+}
+
 
 void Trainer::introduce() {
     // Implement
