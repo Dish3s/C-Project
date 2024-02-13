@@ -1,3 +1,6 @@
+#pragma once
+
+#include <iostream>
 #include <string>
 #include "Pokemon.h"
 
@@ -12,17 +15,22 @@ private:
     int numPokeballs;
 
 public:
-    // Constructor
     Trainer(std::string firstName, std::string lastName, std::string catchphrase, int money, int lifePoints, int numPokeballs);
 
-    // Methods
-    void introduce();
-    void challenge(Trainer& opponent);
-    void capturePokemon(Pokemon wildPokemon);
-    void sendPokemon(int index);
-    void changePokemon(int index, Pokemon newPokemon);
-    void useAbility(int index, Pokemon& target);
-    void earnMoney(int amount);
-    void earnPokeballs(int amount);
-};
+    void Introduce();
+    void Challenge(Trainer& opponent);
+    void CapturePokemon(Pokemon wildPokemon);
+    void SendPokemon(int index);
+    void ChangePokemon(int index, Pokemon newPokemon);
+    void UseAbility(int index, Pokemon& target);
+    void EarnMoney(int amount);
+    void EarnPokeballs(int amount);
 
+    void BattleWildPokemon(Pokemon& wildPokemon);
+
+private:
+    int GetNextAvailablePokemonIndex();
+    bool HasAvailablePokemon();
+    void DisplayPokemonTeam();
+    void DisplayPokemonAbilities(const Pokemon& pokemon);
+};

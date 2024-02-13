@@ -1,4 +1,5 @@
-
+#ifndef POKETYPE_H
+#define POKETYPE_H
 
 enum class PokeType {
     Normal,
@@ -20,3 +21,5 @@ enum class PokeType {
     Steel,
     Fairy
 };
+
+#endif
