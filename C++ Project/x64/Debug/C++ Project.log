@@ -1,7 +1,6 @@
-﻿  Abilities.cpp
-C++ Project.obj : error LNK2019: unresolved external symbol "public: __cdecl Abilities::Abilities(int,enum PokeType,int)" (??0Abilities@@QEAA@HW4PokeType@@H@Z) referenced in function main
-Pokemon.obj : error LNK2001: unresolved external symbol "public: __cdecl Abilities::Abilities(int,enum PokeType,int)" (??0Abilities@@QEAA@HW4PokeType@@H@Z)
-Pokemon.obj : error LNK2019: unresolved external symbol "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl Abilities::GetName(void)" (?GetName@Abilities@@QEAA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ) referenced in function "public: void __cdecl Pokemon::UseAbility(int,class Pokemon &)" (?UseAbility@Pokemon@@QEAAXHAEAV1@@Z)
-Trainer.obj : error LNK2019: unresolved external symbol "public: __cdecl Pokemon::Pokemon(void)" (??0Pokemon@@QEAA@XZ) referenced in function "public: __cdecl Trainer::Trainer(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int,int,int)" (??0Trainer@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@00HHH@Z)
-Trainer.obj : error LNK2019: unresolved external symbol "private: void __cdecl Trainer::DisplayPokemonAbilities(class Pokemon const &)" (?DisplayPokemonAbilities@Trainer@@AEAAXAEBVPokemon@@@Z) referenced in function "public: void __cdecl Trainer::BattleWildPokemon(class Pokemon &)" (?BattleWildPokemon@Trainer@@QEAAXAEAVPokemon@@@Z)
-C:\Users\PC\Documents\GitHub\C-Project\x64\Debug\C++ Project.exe : fatal error LNK1120: 4 unresolved externals
+﻿  Trainer.cpp
+C:\Users\sacha.lignon\Documents\GitHub\C-Project\C++ Project\Trainer.cpp(32,39): error C2662: 'std::string Abilities::GetName(void)': cannot convert 'this' pointer from 'const Abilities' to 'Abilities &'
+C:\Users\sacha.lignon\Documents\GitHub\C-Project\C++ Project\Trainer.cpp(32,30): message : Conversion loses qualifiers
+C:\Users\sacha.lignon\Documents\GitHub\C-Project\C++ Project\Abilities.h(18,17): message : see declaration of 'Abilities::GetName'
+C:\Users\sacha.lignon\Documents\GitHub\C-Project\C++ Project\Trainer.cpp(32,39): message : while trying to match the argument list '()'
+C:\Users\sacha.lignon\Documents\GitHub\C-Project\C++ Project\Trainer.cpp(32,27): error C2088: '<<': illegal for class

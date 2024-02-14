@@ -1,9 +1,19 @@
 #include "Abilities.h"
 
+Abilities::Abilities()
+{
+    
+}
+
 Abilities::Abilities(int damageAmount, PokeType attackType, int numUses) {
     damageAmount = damageAmount;
     attackType = attackType;
     numUses = numUses;
+}
+
+std::string Abilities::GetName()
+{
+    return mName;
 }
 
 int Abilities::GetDamageAmount() {

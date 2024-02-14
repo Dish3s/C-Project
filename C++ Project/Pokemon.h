@@ -4,8 +4,9 @@
 #include "PokeType.h"
 #include "Abilities.h"
 
+
 class Pokemon {
-private:
+public:
     std::string name;
     std::string description;
     PokeType type; 

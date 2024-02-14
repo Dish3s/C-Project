@@ -1,4 +1,5 @@
 #include "Trainer.h"
+#include "Pokemon.h"
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -22,6 +23,13 @@ void Trainer::DisplayPokemonTeam() {
         else {
             std::cout << i + 1 << ". [Empty Slot]\n";
         }
+    }
+}
+
+void Trainer::DisplayPokemonAbilities(const Pokemon& pokemon) {
+    std::cout << "Abilities of " << pokemon.name << ":\n";
+    for (const auto& abilities : pokemon.abilities) {
+        std::cout << "- " << abilities.GetName();
     }
 }
 

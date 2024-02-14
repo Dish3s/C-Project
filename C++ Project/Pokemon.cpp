@@ -2,12 +2,16 @@
 #include "Abilities.h"  
 #include <iostream>  
 
+Pokemon::Pokemon()
+{
+}
+
 Pokemon::Pokemon(std::string mName, std::string mDescription, PokeType mType, int mLevel, int mLife) {
-    name = name;
-    description = description;
-    type = type;
-    level = level;
-    life = life;
+    mName = mName;
+    mDescription = mDescription;
+    mType = mType;
+    mLevel = mLevel;
+    mLife = mLife;
 
     for (int i = 0; i < 4; ++i) {
         abilities[i] = Abilities(0, PokeType::Normal, 0);

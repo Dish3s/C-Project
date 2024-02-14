@@ -6,14 +6,13 @@
 
 class Abilities {
 private:
-    std::string name;
+    std::string mName;
     int damageAmount;
     PokeType attackType;
     int numUses;
 
 public:
     Abilities();
-
     Abilities(int damageAmount, PokeType attackType, int numUses);
 
     std::string GetName();

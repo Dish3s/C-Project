@@ -30,25 +30,31 @@ int main() {
         if (askYesNoQuestion("\nDo you get up?")) {
             Trainer player("Ash", "Ketchum", "I choose you!", 100, 100, 5);
 
+            //YES
+            std::cout << "\nIn the distance you spot a dense forest.\n";
             std::cout << "\nYou decide to explore the forest. As you enter, you hear rustling in the bushes.\n";
             std::cout << "Suddenly, a wild Pokemon appears!\n";
 
             if (askYesNoQuestion("Do you want to run away?")) {
+                //YES
                 std::cout << "\nYou quickly turn around and run back into the open field, leaving the forest behind.\n";
                 std::cout << "After catching your breath, you realize you have no means to defend yourself against wild Pokemon.\n";
             }
             else {
+                //NO
                 Pokemon wildPokemon("Wild Pokemon", "A mysterious wild Pokemon", PokeType::Normal, 20, 30);
                 Abilities tackle(15, PokeType::Normal, 10);
                 wildPokemon.LearnAbility(tackle, 0);
 
                 player.BattleWildPokemon(wildPokemon);
-                // The story continues...
+                
             }
         }
         else {
+            //NO
             std::cout << "\nYou decide to stay lying down a little longer, hoping the throbbing ache in your head will subside.\n";
             if (askYesNoQuestion("Will you get up?")) {
+                //YES
                 std::cout << "\nYou realize that you're lying down in the middle of nowhere, where unknown dangers may appear.\n";
                 Pokemon pikachu("Pikachu", "An electric mouse Pokemon", PokeType::Electric, 30, 50);
                 Abilities thunderShock(20, PokeType::Electric, 5);
@@ -59,6 +65,7 @@ int main() {
                 std::cout << "It's a Pikachu!\n";
 
                 if (askYesNoQuestion("Will you interact with the Pikachu?")) {
+                    //YES
                     std::cout << "\nYou reach out to the Pikachu, offering your hand in friendship.\n";
                     std::cout << "To your surprise, the Pikachu responds positively, nuzzling your hand with its soft fur.\n";
                     std::cout << "It seems you've made a new friend!\n";
@@ -66,16 +73,18 @@ int main() {
                     std::cout << "Feeling a sense of companionship, you decide to follow the Pikachu as it leads you through the grassy field.\n";
                     std::cout << "After a while, you arrive at the outskirts of a bustling town, its buildings bustling with activity.\n";
                     std::cout << "This must be where trainers and Pokemon congregate!\n";
-                    // The story continues...
+                    //
                 }
                 else {
+                    //NO
                     std::cout << "\nYou ignore the Pikachu, shooing it away as you remain lying down.\n";
                     std::cout << "The Pikachu looks disappointed and reluctantly leaves, disappearing into the tall grass.\n";
                     std::cout << "You stay where you are for a while longer, contemplating your next move.\n";
-                    // The story continues...
+                    //
                 }
             }
             else {
+                //NO
                 std::cout << "\nYou stubbornly remain lying down, ignoring any thoughts of getting up.\n";
                 std::this_thread::sleep_for(std::chrono::seconds(3));
 
@@ -88,6 +97,7 @@ int main() {
                 std::cout << "It seems to want your attention. What will you do?\n";
 
                 if (askYesNoQuestion("Will you interact with the Pikachu?")) {
+                    //YES
                     std::cout << "\nYou reach out to the Pikachu, offering your hand in friendship.\n";
                     std::cout << "To your surprise, the Pikachu responds positively, nuzzling your hand with its soft fur.\n";
                     std::cout << "It seems you've made a new friend!\n";
@@ -95,13 +105,14 @@ int main() {
                     std::cout << "Feeling a sense of companionship, you decide to follow the Pikachu as it leads you through the grassy field.\n";
                     std::cout << "After a while, you arrive at the outskirts of a bustling town, its buildings bustling with activity.\n";
                     std::cout << "This must be where trainers and Pokemon congregate!\n";
-                    // The story continues...
+                    
                 }
                 else {
+                    //NO
                     std::cout << "\nYou ignore the Pikachu, shooing it away as you remain lying down.\n";
                     std::cout << "The Pikachu looks disappointed and reluctantly leaves, disappearing into the tall grass.\n";
                     std::cout << "You stay where you are for a while longer, contemplating your next move.\n";
-                    // The story continues...
+                   
                 }
             }
         }
