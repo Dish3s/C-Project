@@ -95,5 +95,5 @@ void Pokemon::TakeDamage(int amount) {
 }
 
 Pokemon::~Pokemon() {
-    std::cout << "Farewell, " << name << "!\n";
+    
 }

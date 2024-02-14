@@ -131,12 +131,14 @@
     <ClCompile Include="C++ Project.cpp" />
     <ClCompile Include="Pokemon.cpp" />
     <ClCompile Include="PokeType.cpp" />
+    <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Trainer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abilities.h" />
     <ClInclude Include="Pokemon.h" />
     <ClInclude Include="PokeType.h" />
+    <ClInclude Include="Shop.h" />
     <ClInclude Include="Trainer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

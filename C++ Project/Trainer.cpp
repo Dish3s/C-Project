@@ -14,6 +14,17 @@ Trainer::Trainer(std::string firstName, std::string lastName, std::string catchp
     numPokeballs = numPokeballs;
 }
 
+void Trainer::AddToTeam(Pokemon newPokemon) {
+    int index = GetNextAvailablePokemonIndex();
+    if (index != -1) {
+        pokemonTeam[index] = newPokemon;
+        std::cout << newPokemon.GetName() << " has been added to your team!\n";
+    }
+    else {
+        std::cout << "Your team is full. You can't add more Pokemon.\n";
+    }
+}
+
 void Trainer::DisplayPokemonTeam() {
     std::cout << "Pokemon Team:\n";
     for (int i = 0; i < 6; ++i) {
@@ -29,7 +40,7 @@ void Trainer::DisplayPokemonTeam() {
 void Trainer::DisplayPokemonAbilities(const Pokemon& pokemon) {
     std::cout << "Abilities of " << pokemon.name << ":\n";
     for (const auto& abilities : pokemon.abilities) {
-        std::cout << "- " << abilities.GetName();
+        std::cout << "- " << pokemon.abilities;
     }
 }
 
@@ -39,7 +50,7 @@ int Trainer::GetNextAvailablePokemonIndex() {
             return i;
         }
     }
-    return -1;  // No available slot
+    return -1;
 }
 
 bool Trainer::HasAvailablePokemon() {

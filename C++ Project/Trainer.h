@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TRAINER_H
+#define TRAINER_H
 
 #include <iostream>
 #include <string>
@@ -27,6 +28,7 @@ public:
     void EarnPokeballs(int amount);
 
     void BattleWildPokemon(Pokemon& wildPokemon);
+    void AddToTeam(Pokemon newPokemon);
 
 private:
     int GetNextAvailablePokemonIndex();
@@ -34,3 +36,5 @@ private:
     void DisplayPokemonTeam();
     void DisplayPokemonAbilities(const Pokemon& pokemon);
 };
+
+#endif

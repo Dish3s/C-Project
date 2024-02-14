@@ -1,6 +1,2 @@
-﻿  Trainer.cpp
-C:\Users\sacha.lignon\Documents\GitHub\C-Project\C++ Project\Trainer.cpp(32,39): error C2662: 'std::string Abilities::GetName(void)': cannot convert 'this' pointer from 'const Abilities' to 'Abilities &'
-C:\Users\sacha.lignon\Documents\GitHub\C-Project\C++ Project\Trainer.cpp(32,30): message : Conversion loses qualifiers
-C:\Users\sacha.lignon\Documents\GitHub\C-Project\C++ Project\Abilities.h(18,17): message : see declaration of 'Abilities::GetName'
-C:\Users\sacha.lignon\Documents\GitHub\C-Project\C++ Project\Trainer.cpp(32,39): message : while trying to match the argument list '()'
-C:\Users\sacha.lignon\Documents\GitHub\C-Project\C++ Project\Trainer.cpp(32,27): error C2088: '<<': illegal for class
+﻿  C++ Project.cpp
+  C++ Project.vcxproj -> C:\Users\sacha.lignon\Documents\GitHub\C-Project\x64\Debug\C++ Project.exe
