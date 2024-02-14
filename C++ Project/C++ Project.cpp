@@ -26,6 +26,7 @@ bool askYesNoQuestion(const std::string& question) {
 
 int main() {
     while (true) {
+        system("cls");
         std::cout << "You wake up in what seems to be a vast, grassy field, the blades swaying gently in the breeze.";
 
         if (askYesNoQuestion("\nDo you get up?")) {
@@ -42,24 +43,31 @@ int main() {
                 std::cout << "\nYou quickly turn around and run back into the open field, leaving the forest behind.\n";
                 std::cout << "After catching your breath, you realize you have no means to defend yourself against wild Pokemon.\n";
                 std::cout << "\nSo you look around...\n";
-                std::this_thread::sleep_for(std::chrono::seconds(1));
+                std::this_thread::sleep_for(std::chrono::seconds(2));
                 std::cout << "You've been walking for a while through tall grass and trip over a soft creature.\n";
                 std::cout << "It's a Pikachu!\n";
 
-                if (askYesNoQuestion("Will you interact with the Pikachu?")) {
+                if (askYesNoQuestion("\nWill you interact with the Pikachu?")) {
                     //YES
                     std::cout << "\nYou reach out to the Pikachu, offering your hand in friendship.\n";
                     std::cout << "To your surprise, the Pikachu responds positively, nuzzling your hand with its soft fur.\n";
                     std::cout << "It seems you've made a new friend!\n";
-
+                    std::this_thread::sleep_for(std::chrono::seconds(3));
                     std::cout << "Feeling a sense of companionship, you decide to follow the Pikachu as it leads you through the grassy field.\n";
                     break;
                 }
                 else {
                     //NO
-                    std::cout << "\nYou ignore the Pikachu, shooing it away as you remain lying down.\n";
+                    std::cout << "\nYou ignore the Pikachu, shooing it away.\n";
                     std::cout << "The Pikachu looks disappointed and reluctantly leaves, disappearing into the tall grass.\n";
-                    std::cout << "You stay where you are for a while longer, contemplating your next move.\n";
+                    std::cout << "Without any guidance you are stuck in an everlasting maze of tall grass...\n";
+
+                    if (askYesNoQuestion("\nDo you wish to play again?")) {
+                        continue;
+                    }
+                    else {
+                        return 0;
+                    }
                 }
             }
             else {
@@ -87,22 +95,29 @@ int main() {
                 std::cout << "As you walk, you notice a small creature darting through the grass nearby.\n";
                 std::cout << "It's a Pikachu!\n";
 
-                if (askYesNoQuestion("Will you interact with the Pikachu?")) {
+                if (askYesNoQuestion("\nWill you interact with the Pikachu?")) {
                     //YES
                     system("cls");
                     std::cout << "\nYou reach out to the Pikachu, offering your hand in friendship.\n";
                     std::cout << "To your surprise, the Pikachu responds positively, nuzzling your hand with its soft fur.\n";
                     std::cout << "It seems you've made a new friend!\n";
-
-                    std::cout << "Feeling a sense of companionship, you decide to follow the Pikachu as it leads you through the grassy field.\n";
+                    std::this_thread::sleep_for(std::chrono::seconds(3));
+                    std::cout << "\nFeeling a sense of companionship, you decide to follow the Pikachu as it leads you through the grassy field.\n";
                     break;
                 }
                 else {
                     //NO
                     system("cls");
-                    std::cout << "\nYou ignore the Pikachu, shooing it away as you remain lying down.\n";
+                    std::cout << "\nYou ignore the Pikachu, shooing it away.\n";
                     std::cout << "The Pikachu looks disappointed and reluctantly leaves, disappearing into the tall grass.\n";
-                    std::cout << "You stay where you are for a while longer, contemplating your next move.\n";
+                    std::cout << "You stay where you are for a while longer, contemplating your next move with an overwhelming sense of regret.\n";
+
+                    if (askYesNoQuestion("\nDo you wish to play again?")) {
+                        continue;
+                    }
+                    else {
+                        return 0;
+                    }
                 }
             }
             else {
@@ -115,11 +130,11 @@ int main() {
                 Abilities thunderShock(20, PokeType::Electric, 5);
                 pikachu.LearnAbility(thunderShock, 0);
 
-                std::cout << "After a while of resting your head, you feel a slight nudge on your thigh.\n";
+                std::cout << "\nAfter a while of resting your head, you feel a slight nudge on your thigh.\n";
                 std::cout << "Curious, you open your eyes to find a small Pikachu nudging you, its cheeks sparking with electricity.\n";
                 std::cout << "It seems to want your attention. What will you do?\n";
 
-                if (askYesNoQuestion("Will you interact with the Pikachu?")) {
+                if (askYesNoQuestion("\nWill you interact with the Pikachu?")) {
                     //YES
                     std::cout << "\nYou reach out to the Pikachu, offering your hand in friendship.\n";
                     std::cout << "To your surprise, the Pikachu responds positively, nuzzling your hand with its soft fur.\n";
@@ -127,22 +142,23 @@ int main() {
 
                     std::cout << "Feeling a sense of companionship, you decide to follow the Pikachu as it leads you through the grassy field.\n";
                     break;
-                    
                 }
                 else {
                     //NO
                     std::cout << "\nYou ignore the Pikachu, shooing it away as you remain lying down.\n";
                     std::cout << "The Pikachu looks disappointed and reluctantly leaves, disappearing into the tall grass.\n";
                     std::cout << "You stay where you are for a while longer, contemplating your next move.\n";
-                   
                 }
             }
         }
     }
 
+    std::this_thread::sleep_for(std::chrono::seconds(3));
     std::cout << "\nIn the near distance, a town appears.\n";
     std::cout << "As you near the town you see its road filled with young faces.\n";
     std::cout << "You realize you seem to be the center of attention for a reason you cannot figure out.\n";
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+    std::cout << "You brush it off and notice a nice looking shop. Maybe you might find something important for you little friend.\n";
     
 
     return 0;

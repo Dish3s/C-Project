@@ -4,6 +4,7 @@
 
 Pokemon::Pokemon()
 {
+
 }
 
 Pokemon::Pokemon(std::string mName, std::string mDescription, PokeType mType, int mLevel, int mLife) {
