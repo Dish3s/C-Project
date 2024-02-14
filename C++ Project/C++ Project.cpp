@@ -180,7 +180,9 @@ int main() {
             break;
         }
 
-        if (purchaseChoice < 1 || purchaseChoice > pokemart.availablePokemon.size()) {
+        const std::vector<Pokemon>& availablePokemon = pokemart.getAvailablePokemon();
+
+        if (purchaseChoice < 1 || purchaseChoice > availablePokemon.size()) {
             std::cout << "Invalid choice. Please choose a valid option.\n";
         }
         else {

@@ -15,6 +15,9 @@ void Shop::DisplayAvailablePokemon() const {
         std::cout << i + 1 << ". " << availablePokemon[i].getName() << "\n";
     }
 }
+const std::vector<Pokemon>& Shop::getAvailablePokemon() const {
+    return availablePokemon;
+}
 
 Pokemon Shop::PurchasePokemon(int choice) {
     if (choice >= 1 && choice <= availablePokemon.size()) {

@@ -18,7 +18,8 @@ private:
 public:
     Pokemon();
     Pokemon(std::string n, std::string desc, PokeType type, int lvl, int hp);
-    void useAbility(int abilityIndex) const;
+    void useAbility(int abilityIndex, Pokemon& target);
+    void useAbility(int abilityIndex, const Pokemon& target) const;
     void restAbilities();
     void learnAbility(const Ability& newAbility);
 

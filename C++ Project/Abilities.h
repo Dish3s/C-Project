@@ -15,7 +15,6 @@ private:
     int remainingUses;
 
 public:
-
     Ability(std::string n, int damage, PokeType type, int uses);
     void useAbility(const Pokemon& target);
     void rest();

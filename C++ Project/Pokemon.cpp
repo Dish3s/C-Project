@@ -4,14 +4,24 @@
 Pokemon::Pokemon(std::string n, std::string desc, PokeType type, int lvl, int hp)
     : name(n), description(desc), pokeType(type), level(lvl), life(hp) {}
 
-void Pokemon::useAbility(int abilityIndex) const {
+void Pokemon::useAbility(int abilityIndex, Pokemon& target) {
     if (abilityIndex >= 0 && abilityIndex < abilities.size()) {
-        abilities[abilityIndex].useAbility();
+        abilities[abilityIndex].useAbility(target);
     }
     else {
         std::cout << "Invalid ability index.\n";
     }
 }
+
+void Pokemon::useAbility(int abilityIndex, const Pokemon& target) const {
+    if (abilityIndex >= 0 && abilityIndex < abilities.size()) {
+        abilities[abilityIndex].useAbility(target);
+    }
+    else {
+        std::cout << "Invalid ability index.\n";
+    }
+}
+
 
 void Pokemon::restAbilities() {
     for (auto& ability : abilities) {
@@ -35,4 +45,3 @@ int Pokemon::getLife() const {
 const std::vector<Ability>& Pokemon::getAbilities() const {
     return abilities;
 }
-

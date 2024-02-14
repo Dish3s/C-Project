@@ -12,4 +12,5 @@ public:
 
     void DisplayAvailablePokemon() const;
     Pokemon PurchasePokemon(int choice);
+    const std::vector<Pokemon>& getAvailablePokemon() const;
 };

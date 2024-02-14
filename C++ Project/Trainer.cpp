@@ -37,11 +37,12 @@ void Trainer::startBattle(Trainer& opponent) {
             std::cout << firstName << " sends out " << playerPokemon.getName() << "!\n";
 
             int opponentChoice = rand() % opponentTeam.size();
-            Pokemon& opponentPokemon = opponentTeam[opponentChoice];
+            const Pokemon& opponentPokemon = opponentTeam[opponentChoice];
+
             std::cout << opponent.firstName << " sends out " << opponentPokemon.getName() << "!\n";
 
-            playerPokemon.useAbility(0); 
-            opponentPokemon.useAbility(0);
+            playerPokemon.useAbility(0, opponentPokemon);
+            opponentPokemon.useAbility(0, playerPokemon);
 
             std::cout << "------------------------\n";
             std::cout << playerPokemon.getName() << "'s Life: " << playerPokemon.getLife() << "\n";
@@ -92,8 +93,9 @@ void Trainer::captureWildPokemon(const Pokemon& wildPokemon) {
             Pokemon& playerPokemon = team[playerChoice - 1];
             std::cout << firstName << " sends out " << playerPokemon.getName() << "!\n";
 
-            playerPokemon.useAbility(0);
-            wildPokemon.useAbility(0);
+            playerPokemon.useAbility(0, wildPokemon);
+            wildPokemon.useAbility(0, playerPokemon);
+
 
             // Display the result of the round
             std::cout << "------------------------\n";

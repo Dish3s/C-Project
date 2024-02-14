@@ -5,7 +5,7 @@
 Ability::Ability(std::string n, int damage, PokeType type, int uses)
     : name(n), damageAmount(damage), attackType(type), maxUses(uses), remainingUses(uses) {}
 
-void Ability::useAbility(Pokemon& target) {
+void Ability::useAbility(const Pokemon& target) {
     if (remainingUses > 0) {
         std::cout << name << " deals " << damageAmount << " damage of type " << static_cast<int>(attackType)
             << " to " << target.getName() << ".\n";
