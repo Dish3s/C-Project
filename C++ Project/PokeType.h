@@ -1,25 +1,23 @@
-#ifndef POKETYPE_H
-#define POKETYPE_H
+
+#pragma once
 
 enum class PokeType {
     Normal,
-    Fire,
-    Water,
-    Electric,
-    Grass,
-    Ice,
     Fighting,
+    Flying,
     Poison,
     Ground,
-    Flying,
-    Psychic,
-    Bug,
     Rock,
+    Bug,
     Ghost,
+    Steel,
+    Fire,
+    Water,
+    Grass,
+    Electric,
+    Psychic,
+    Ice,
     Dragon,
     Dark,
-    Steel,
     Fairy
 };
-
-#endif

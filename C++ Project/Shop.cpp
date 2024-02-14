@@ -1,19 +1,29 @@
 #include "Shop.h"
-#include <iostream>
+#include "Abilities.h"
 
 Shop::Shop() {
-    availablePokemon.push_back(Pokemon("Charmander", "A fire lizard Pokemon", PokeType::Fire, 10, 30));
-    availablePokemon.push_back(Pokemon("Squirtle", "A water turtle Pokemon", PokeType::Water, 10, 30));
-    availablePokemon.push_back(Pokemon("Bulbasaur", "A grass seed Pokemon", PokeType::Grass, 10, 30));
+    Pokemon bulbasaur("Bulbasaur", "A grass/poison-type Pokemon", PokeType::Grass, 9, 48);
+    Ability tackle("tackle", 15, PokeType::Normal, 10);
+    bulbasaur.learnAbility(tackle);
+    availablePokemon.push_back(bulbasaur);
+
 }
 
-void Shop::DisplayAvailablePokemon() {
+void Shop::DisplayAvailablePokemon() const {
     std::cout << "Available Pokemon in the shop:\n";
     for (size_t i = 0; i < availablePokemon.size(); ++i) {
-        std::cout << i + 1 << ". " << availablePokemon[i].GetName() << " (Level " << availablePokemon[i].GetLevel() << ")\n";
+        std::cout << i + 1 << ". " << availablePokemon[i].getName() << "\n";
     }
 }
 
-Pokemon Shop::PurchasePokemon(int index) {
-    return availablePokemon[index - 1];
+Pokemon Shop::PurchasePokemon(int choice) {
+    if (choice >= 1 && choice <= availablePokemon.size()) {
+        Pokemon purchasedPokemon = availablePokemon[choice - 1];
+        availablePokemon.erase(availablePokemon.begin() + choice - 1);
+        return purchasedPokemon;
+    }
+    else {
+        std::cout << "Invalid choice. Returning default Pokemon.\n";
+        return Pokemon("Default", "A default Pokemon", PokeType::Normal, 10, 20);
+    }
 }

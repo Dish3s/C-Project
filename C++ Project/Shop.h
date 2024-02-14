@@ -1,8 +1,7 @@
-#ifndef SHOP_H
-#define SHOP_H
+#pragma once
 
-#include <vector>
 #include "Pokemon.h"
+#include <vector>
 
 class Shop {
 private:
@@ -11,8 +10,6 @@ private:
 public:
     Shop();
 
-    void DisplayAvailablePokemon();
-    Pokemon PurchasePokemon(int index);
+    void DisplayAvailablePokemon() const;
+    Pokemon PurchasePokemon(int choice);
 };
-
-#endif

@@ -1,25 +1,25 @@
-#pragma once
+#ifndef ABILITIES_H
+#define ABILITIES_H
 
-#include <string>
+#include <iostream>
 #include "PokeType.h"
-#include "Abilities.h"
 
-class Abilities {
+class Pokemon; 
+
+class Ability {
 private:
-    std::string mName;
+    std::string name;
     int damageAmount;
     PokeType attackType;
-    int numUses;
+    int maxUses;
+    int remainingUses;
 
 public:
-    Abilities();
-    Abilities(int damageAmount, PokeType attackType, int numUses);
 
-    std::string GetName();
-    int GetDamageAmount();
-    PokeType GetAttackType();
-    int GetNumUses();
+    Ability(std::string n, int damage, PokeType type, int uses);
+    void useAbility(const Pokemon& target);
+    void rest();
 
-    void Use();
-    void Rest();
+    std::string getName() const;
 };
+#endif

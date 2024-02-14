@@ -1,44 +1,26 @@
 #include "Abilities.h"
+#include "Pokemon.h"
+#include <iostream>
 
-Abilities::Abilities()
-{
-    
-}
+Ability::Ability(std::string n, int damage, PokeType type, int uses)
+    : name(n), damageAmount(damage), attackType(type), maxUses(uses), remainingUses(uses) {}
 
-Abilities::Abilities(int damageAmount, PokeType attackType, int numUses) {
-    damageAmount = damageAmount;
-    attackType = attackType;
-    numUses = numUses;
-}
-
-std::string Abilities::GetName()
-{
-    return mName;
-}
-
-int Abilities::GetDamageAmount() {
-    return damageAmount;
-}
-
-PokeType Abilities::GetAttackType() {
-    return attackType;
-}
-
-int Abilities::GetNumUses() {
-    return numUses;
-}
-
-void Abilities::Use() {
-    if (numUses > 0) {
-        // Perform attack
-        numUses--;
+void Ability::useAbility(Pokemon& target) {
+    if (remainingUses > 0) {
+        std::cout << name << " deals " << damageAmount << " damage of type " << static_cast<int>(attackType)
+            << " to " << target.getName() << ".\n";
+        remainingUses--;
     }
     else {
-        // Handle no uses left
+        std::cout << name << " has no remaining uses. Please rest to restore uses.\n";
     }
 }
 
-void Abilities::Rest() {
-    // Reset uses after resting
-    numUses = 5;
+void Ability::rest() {
+    remainingUses = maxUses;
+    std::cout << name << " has been rested. Remaining uses restored to " << maxUses << ".\n";
+}
+
+std::string Ability::getName() const {
+    return name;
 }

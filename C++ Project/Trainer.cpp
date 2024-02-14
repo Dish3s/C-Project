@@ -1,158 +1,172 @@
-#include "Trainer.h"
-#include "Pokemon.h"
 #include <iostream>
-#include <chrono>
-#include <thread>
-#include <cstdlib>
+#include "PokeType.h"
+#include "Abilities.h"
+#include "Pokemon.h"
+#include "Trainer.h"
 
-Trainer::Trainer(std::string firstName, std::string lastName, std::string catchphrase, int money, int lifePoints, int numPokeballs) {
-    firstName = firstName;
-    lastName = lastName;
-    catchphrase = catchphrase;
-    money = money;
-    lifePoints = lifePoints;
-    numPokeballs = numPokeballs;
+Trainer::Trainer(std::string first, std::string last, std::string phrase, int startingMoney, int startingLife, int startingPokeballs)
+    : firstName(first), lastName(last), catchphrase(phrase), money(startingMoney), lifePoints(startingLife), pokeballs(startingPokeballs) {}
+
+void Trainer::introduce() const {
+    std::cout << "Hello, I'm Trainer " << firstName << " " << lastName << ". " << catchphrase << "!\n";
 }
 
-void Trainer::AddToTeam(Pokemon newPokemon) {
-    int index = GetNextAvailablePokemonIndex();
-    if (index != -1) {
-        pokemonTeam[index] = newPokemon;
-        std::cout << newPokemon.GetName() << " has been added to your team!\n";
-    }
-    else {
-        std::cout << "Your team is full. You can't add more Pokemon.\n";
-    }
-}
+void Trainer::startBattle(Trainer& opponent) {
+    std::cout << firstName << " challenges Trainer " << opponent.firstName << " to a Pokemon battle!\n";
 
-void Trainer::DisplayPokemonTeam() {
-    std::cout << "Pokemon Team:\n";
-    for (int i = 0; i < 6; ++i) {
-        if (!pokemonTeam[i].GetName().empty()) {
-            std::cout << i + 1 << ". " << pokemonTeam[i].GetName() << " (Level " << pokemonTeam[i].GetLevel() << ")\n";
+    while (true) {
+        std::cout << "\n------------------------\n";
+        std::cout << firstName << "'s Team:\n";
+        for (size_t i = 0; i < team.size(); ++i) {
+            std::cout << i + 1 << ". " << team[i].getName() << " (Life: " << team[i].getLife() << ")\n";
+        }
+
+        std::cout << "\n" << opponent.firstName << "'s Team:\n";
+        const std::vector<Pokemon>& opponentTeam = opponent.getTeam();
+        for (size_t i = 0; i < opponentTeam.size(); ++i) {
+            std::cout << i + 1 << ". " << opponentTeam[i].getName() << " (Life: " << opponentTeam[i].getLife() << ")\n";
+        }
+        std::cout << "------------------------\n";
+
+        int playerChoice;
+        std::cout << "Choose a Pokemon to send into battle (1-" << team.size() << "): ";
+        std::cin >> playerChoice;
+
+        if (playerChoice >= 1 && playerChoice <= team.size()) {
+            Pokemon& playerPokemon = team[playerChoice - 1];
+            std::cout << firstName << " sends out " << playerPokemon.getName() << "!\n";
+
+            int opponentChoice = rand() % opponentTeam.size();
+            Pokemon& opponentPokemon = opponentTeam[opponentChoice];
+            std::cout << opponent.firstName << " sends out " << opponentPokemon.getName() << "!\n";
+
+            playerPokemon.useAbility(0); 
+            opponentPokemon.useAbility(0);
+
+            std::cout << "------------------------\n";
+            std::cout << playerPokemon.getName() << "'s Life: " << playerPokemon.getLife() << "\n";
+            std::cout << opponentPokemon.getName() << "'s Life: " << opponentPokemon.getLife() << "\n";
+            std::cout << "------------------------\n";
+
+
+            if (playerPokemon.getLife() <= 0) {
+                std::cout << firstName << "'s " << playerPokemon.getName() << " fainted!\n";
+                break;
+            }
+
+            if (opponentPokemon.getLife() <= 0) {
+                std::cout << opponent.firstName << "'s " << opponentPokemon.getName() << " fainted!\n";
+                break;
+            }
+
+            std::cout << "Press Enter to continue...";
+            std::cin.ignore();
+            std::cin.get();
         }
         else {
-            std::cout << i + 1 << ". [Empty Slot]\n";
+            std::cout << "Invalid choice. Please choose a Pokemon in the valid range.\n";
         }
     }
+
+    std::cout << "The battle between " << firstName << " and " << opponent.firstName << " has ended!\n";
 }
 
-void Trainer::DisplayPokemonAbilities(const Pokemon& pokemon) {
-    std::cout << "Abilities of " << pokemon.name << ":\n";
-    for (const auto& abilities : pokemon.abilities) {
-        std::cout << "- " << pokemon.abilities;
-    }
-}
+void Trainer::captureWildPokemon(const Pokemon& wildPokemon) {
+    std::cout << firstName << " encounters a wild " << wildPokemon.getName() << "!\n";
 
-int Trainer::GetNextAvailablePokemonIndex() {
-    for (int i = 0; i < 6; ++i) {
-        if (pokemonTeam[i].GetName().empty()) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-bool Trainer::HasAvailablePokemon() {
-    for (int i = 0; i < 6; ++i) {
-        if (!pokemonTeam[i].GetName().empty() && pokemonTeam[i].GetLife() > 0) {
-            return true;
-        }
-    }
-    return false;
-}
-
-void Trainer::BattleWildPokemon(Pokemon& wildPokemon) {
-    std::cout << "A wild " << wildPokemon.GetName() << " appeared!\n";
-
-    // Trainer chooses a Pokemon to send into battle
-    int chosenPokemonIndex;
-    do {
-        std::cout << "Choose a Pokemon to send into battle:\n";
-        DisplayPokemonTeam();
-        std::cin >> chosenPokemonIndex;
-    } while (chosenPokemonIndex <= 0 || chosenPokemonIndex > 6 || pokemonTeam[chosenPokemonIndex - 1].GetName().empty());
-
-    Pokemon& activePokemon = pokemonTeam[chosenPokemonIndex - 1];
-
-    // Battle loop
     while (true) {
-        std::cout << "Your " << activePokemon.GetName() << " vs. wild " << wildPokemon.GetName() << "!\n";
-        std::cout << "1. Use Pokemon Ability\n";
-        std::cout << "2. Attempt to Capture\n";
-        std::cout << "3. Run Away\n";
-
-        int choice;
-        std::cin >> choice;
-
-        switch (choice) {
-        case 1: {
-            // Trainer chooses an ability to use
-            int chosenAbilityIndex;
-            do {
-                std::cout << "Choose an ability to use:\n";
-                DisplayPokemonAbilities(activePokemon);
-                std::cin >> chosenAbilityIndex;
-            } while (chosenAbilityIndex <= 0 || chosenAbilityIndex > 4);
-
-            activePokemon.UseAbility(chosenAbilityIndex - 1, wildPokemon);
-            break;
+        std::cout << "\n------------------------\n";
+        std::cout << firstName << "'s Team:\n";
+        for (size_t i = 0; i < team.size(); ++i) {
+            std::cout << i + 1 << ". " << team[i].getName() << " (Life: " << team[i].getLife() << ")\n";
         }
-        case 2: {
-            // Attempt to capture the wild Pokemon
-            if (numPokeballs > 0) {
-                std::cout << "Throwing a Pokeball...\n";
-                std::this_thread::sleep_for(std::chrono::seconds(2));
 
-                // Capture success is based on a random chance
-                if (std::rand() % 2 == 0) {
-                    std::cout << "Congratulations! You captured the wild " << wildPokemon.GetName() << "!\n";
-                    pokemonTeam[GetNextAvailablePokemonIndex()] = wildPokemon;
-                    return;
-                }
-                else {
-                    std::cout << "Oh no! The wild " << wildPokemon.GetName() << " broke free.\n";
-                }
+        std::cout << "\nWild " << wildPokemon.getName() << " (Life: " << wildPokemon.getLife() << ")\n";
+        std::cout << "------------------------\n";
 
-                numPokeballs--;
-                std::cout << "Remaining Pokeballs: " << numPokeballs << "\n";
+        int playerChoice;
+        std::cout << "Choose a Pokemon to send into battle (1-" << team.size() << "): ";
+        std::cin >> playerChoice;
+
+        if (playerChoice >= 1 && playerChoice <= team.size()) {
+            Pokemon& playerPokemon = team[playerChoice - 1];
+            std::cout << firstName << " sends out " << playerPokemon.getName() << "!\n";
+
+            playerPokemon.useAbility(0);
+            wildPokemon.useAbility(0);
+
+            // Display the result of the round
+            std::cout << "------------------------\n";
+            std::cout << playerPokemon.getName() << "'s Life: " << playerPokemon.getLife() << "\n";
+            std::cout << "Wild " << wildPokemon.getName() << "'s Life: " << wildPokemon.getLife() << "\n";
+            std::cout << "------------------------\n";
+
+            // Check if any Pokemon fainted
+            if (playerPokemon.getLife() <= 0) {
+                std::cout << firstName << "'s " << playerPokemon.getName() << " fainted!\n";
+                break;
             }
-            else {
-                std::cout << "You don't have any Pokeballs left!\n";
+
+            if (wildPokemon.getLife() <= 0) {
+                std::cout << "Wild " << wildPokemon.getName() << " fainted!\n";
+                break;
             }
-            break;
-        }
-        case 3: {
-            // Run away from the battle
-            std::cout << "You fled from the battle!\n";
-            return;
-        }
-        default:
-            std::cout << "Invalid choice. Try again.\n";
-        }
 
-        // Wild Pokemon counterattacks
-        wildPokemon.UseAbility(std::rand() % 4, activePokemon);
-
-        // Check if the player's Pokemon fainted
-        if (activePokemon.GetLife() <= 0) {
-            std::cout << "Your " << activePokemon.GetName() << " fainted!\n";
-
-            // Choose another Pokemon if available
-            if (HasAvailablePokemon()) {
-                do {
-                    std::cout << "Choose another Pokemon to send into battle:\n";
-                    DisplayPokemonTeam();
-                    std::cin >> chosenPokemonIndex;
-                } while (chosenPokemonIndex <= 0 || chosenPokemonIndex > 6 || pokemonTeam[chosenPokemonIndex - 1].GetName().empty());
-
-                activePokemon = pokemonTeam[chosenPokemonIndex - 1];
-            }
-            else {
-                std::cout << "All your Pokemon fainted! You blacked out...\n";
-                std::this_thread::sleep_for(std::chrono::seconds(2));
-                std::exit(0);
-            }
+            std::cout << "Press Enter to continue...";
+            std::cin.ignore();
+            std::cin.get();
         }
+        else {
+            std::cout << "Invalid choice. Please choose a Pokemon in the valid range.\n";
+        }
+    }
+
+    std::cout << "The battle with the wild " << wildPokemon.getName() << " has ended!\n";
+}
+
+void Trainer::sendPokemon(int index) {
+    if (index >= 0 && index < team.size()) {
+        std::cout << firstName << " sends out " << team[index].getName() << "!\n";
+    }
+    else {
+        std::cout << "Invalid Pokemon index.\n";
+    }
+}
+
+void Trainer::useAbility(const Pokemon& attacker, const Pokemon& target, const std::string& ability) {
+    std::cout << attacker.getName() << " uses " << ability << " on " << target.getName() << "!\n";
+}
+
+void Trainer::earnMoney(int amount) {
+    money += amount;
+    std::cout << firstName << " earned " << amount << " money!\n";
+}
+
+void Trainer::earnPokeballs(int amount) {
+    pokeballs += amount;
+    std::cout << firstName << " obtained " << amount << " new Pokeballs!\n";
+}
+
+std::string Trainer::getFirstName() const {
+    return firstName;
+}
+
+const std::vector<Pokemon>& Trainer::getTeam() const {
+    return team;
+}
+
+void Trainer::restTeam() {
+    for (auto& pokemon : team) {
+        pokemon.restAbilities();
+    }
+}
+
+void Trainer::addPokemonToTeam(const Pokemon& newPokemon) {
+    if (team.size() < 6) {
+        team.push_back(newPokemon);
+        std::cout << firstName << " added " << newPokemon.getName() << " to the team!\n";
+    }
+    else {
+        std::cout << firstName << " cannot have more than 6 Pokemon in the team.\n";
     }
 }

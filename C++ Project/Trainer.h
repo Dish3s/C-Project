@@ -1,9 +1,10 @@
-#ifndef TRAINER_H
-#define TRAINER_H
+
+#pragma once
 
 #include <iostream>
-#include <string>
+#include <vector>
 #include "Pokemon.h"
+#include "Abilities.h"
 
 class Trainer {
 private:
@@ -12,29 +13,22 @@ private:
     std::string catchphrase;
     int money;
     int lifePoints;
-    Pokemon pokemonTeam[6];
-    int numPokeballs;
+    std::vector<Pokemon> team;
+    int pokeballs;
 
 public:
-    Trainer(std::string firstName, std::string lastName, std::string catchphrase, int money, int lifePoints, int numPokeballs);
+    Trainer(std::string first, std::string last, std::string phrase, int startingMoney, int startingLife, int startingPokeballs);
 
-    void Introduce();
-    void Challenge(Trainer& opponent);
-    void CapturePokemon(Pokemon wildPokemon);
-    void SendPokemon(int index);
-    void ChangePokemon(int index, Pokemon newPokemon);
-    void UseAbility(int index, Pokemon& target);
-    void EarnMoney(int amount);
-    void EarnPokeballs(int amount);
+    void introduce() const;
+    void startBattle(Trainer& opponent);
+    void captureWildPokemon(const Pokemon& wildPokemon);
+    void sendPokemon(int index);
+    void useAbility(const Pokemon& attacker, const Pokemon& target, const std::string& ability);
+    void earnMoney(int amount);
+    void earnPokeballs(int amount);
 
-    void BattleWildPokemon(Pokemon& wildPokemon);
-    void AddToTeam(Pokemon newPokemon);
-
-private:
-    int GetNextAvailablePokemonIndex();
-    bool HasAvailablePokemon();
-    void DisplayPokemonTeam();
-    void DisplayPokemonAbilities(const Pokemon& pokemon);
+    std::string getFirstName() const;
+    const std::vector<Pokemon>& getTeam() const;
+    void restTeam();
+    void addPokemonToTeam(const Pokemon& newPokemon);
 };
-
-#endif

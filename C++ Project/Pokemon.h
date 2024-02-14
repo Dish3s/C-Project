@@ -1,41 +1,29 @@
-#pragma once
+#ifndef POKEMON_H
+#define POKEMON_H
 
-#include <string>
-#include "PokeType.h"
+#include <iostream>
+#include <vector>
 #include "Abilities.h"
-
+#include "PokeType.h"
 
 class Pokemon {
-public:
+private:
     std::string name;
     std::string description;
-    PokeType type; 
+    PokeType pokeType;
     int level;
     int life;
-    Abilities abilities[4];
-
+    std::vector<Ability> abilities;
 
 public:
     Pokemon();
+    Pokemon(std::string n, std::string desc, PokeType type, int lvl, int hp);
+    void useAbility(int abilityIndex) const;
+    void restAbilities();
+    void learnAbility(const Ability& newAbility);
 
-    Pokemon(std::string mName, std::string mDescription, PokeType mType, int mLevel, int mLife);
-
-    std::string GetName();
-    std::string GetDescription();
-    PokeType GetType();
-    int GetLevel();
-    int GetLife();
-
-    void SetType(PokeType mType);
-    void SetLevel(int mLevel);
-    void SetLife(int mLife);
-
-    void LearnAbility(Abilities ability, int slot);
-    void UseAbility(int index, Pokemon& target);
-    void GetInPokeball();
-    void GetOutOfPokeball();
-    void Rest();
-    void TakeDamage(int amount);
-
-    ~Pokemon();
+    std::string getName() const;
+    int getLife() const;
+    const std::vector<Ability>& getAbilities() const;
 };
+#endif

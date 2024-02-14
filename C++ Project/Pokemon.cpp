@@ -1,100 +1,38 @@
 #include "Pokemon.h"
-#include "Abilities.h"  
-#include <iostream>  
+#include "Abilities.h"
 
-Pokemon::Pokemon()
-{
+Pokemon::Pokemon(std::string n, std::string desc, PokeType type, int lvl, int hp)
+    : name(n), description(desc), pokeType(type), level(lvl), life(hp) {}
 
-}
-
-Pokemon::Pokemon(std::string mName, std::string mDescription, PokeType mType, int mLevel, int mLife) {
-    mName = mName;
-    mDescription = mDescription;
-    mType = mType;
-    mLevel = mLevel;
-    mLife = mLife;
-
-    for (int i = 0; i < 4; ++i) {
-        abilities[i] = Abilities(0, PokeType::Normal, 0);
+void Pokemon::useAbility(int abilityIndex) const {
+    if (abilityIndex >= 0 && abilityIndex < abilities.size()) {
+        abilities[abilityIndex].useAbility();
+    }
+    else {
+        std::cout << "Invalid ability index.\n";
     }
 }
 
-std::string Pokemon::GetName() {
+void Pokemon::restAbilities() {
+    for (auto& ability : abilities) {
+        ability.rest();
+    }
+}
+
+void Pokemon::learnAbility(const Ability& newAbility) {
+    abilities.push_back(newAbility);
+    std::cout << name << " learned a new ability: " << newAbility.getName() << "!\n";
+}
+
+std::string Pokemon::getName() const {
     return name;
 }
 
-std::string Pokemon::GetDescription() {
-    return description;
-}
-
-PokeType Pokemon::GetType() {
-    return type;
-}
-
-int Pokemon::GetLevel() {
-    return level;
-}
-
-int Pokemon::GetLife() {
+int Pokemon::getLife() const {
     return life;
 }
 
-void Pokemon::SetType(PokeType mType) {
-    type = mType;
+const std::vector<Ability>& Pokemon::getAbilities() const {
+    return abilities;
 }
 
-void Pokemon::SetLevel(int mLevel) {
-    level = mLevel;
-}
-
-void Pokemon::SetLife(int mLife) {
-    life = mLife;
-}
-
-void Pokemon::LearnAbility(Abilities ability, int slot) {
-    if (slot >= 0 && slot < 4) {
-        abilities[slot] = ability;
-    }
-}
-
-void Pokemon::UseAbility(int slot, Pokemon& target) {
-    if (slot >= 0 && slot < 4) {
-        abilities[slot].Use();
-        int damageAmount = abilities[slot].GetDamageAmount();
-
-        std::cout << name << " used " << abilities[slot].GetName() << " on " << target.GetName() << "!\n";
-        target.TakeDamage(damageAmount);
-    }
-}
-
-void Pokemon::GetInPokeball() {
-    std::cout << name << " got inside a Pokeball!\n";
-}
-
-void Pokemon::GetOutOfPokeball() {
-    std::cout << name << " got out of a Pokeball!\n";
-}
-
-void Pokemon::Rest() {
-    life += 10;  // Restoring 10 health points
-    for (int i = 0; i < 4; ++i) {
-        abilities[i].Rest();  // Resetting ability uses
-    }
-    std::cout << name << " rested and restored health!\n";
-}
-
-void Pokemon::TakeDamage(int amount) {
-    life -= amount;
-    if (life < 0) {
-        life = 0;
-    }
-    std::cout << name << " took " << amount << " damage! Remaining life: " << life << "\n";
-
-    if (life == 0) {
-        std::cout << name << " fainted!\n";
-    }
-}
-
-Pokemon::~Pokemon() {
-    
-}
